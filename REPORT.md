@@ -35,3 +35,7 @@
 ### Созданный балансировщик
 
 ![6](https://github.com/StasAlginin/diplom_netology/blob/main/images/Balancer.jpeg)
+
+### Проверка elastic
+
+![7](https://github.com/StasAlginin/diplom_netology/blob/main/images/elastik.jpeg)
