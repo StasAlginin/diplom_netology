@@ -23,7 +23,7 @@ resource "yandex_compute_instance" "vm" {
   network_interface {
   subnet_id             = [yandex_vpc_subnet.private_subnet_vm1.id, yandex_vpc_subnet.private_subnet_vm2.id][count.index]
     nat                 = false
-    # security_group_ids  = [yandex_vpc_security_group.web_sg.id]
+    security_group_ids  = [yandex_vpc_security_group.web_sg.id]
   }
 
    metadata = {
@@ -31,9 +31,6 @@ resource "yandex_compute_instance" "vm" {
       VM_USER = var.vm_user
       SSH_KEY = var.ssh_key
     })
-
-    # ssh-keys  = "algininss:${file(var.ssh_key)}"
-    # user-data = file("/home/algininss/diplom/terraform/nginx.yaml")
   } 
 
   scheduling_policy {

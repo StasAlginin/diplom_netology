@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "elasticsearchvm" {
     network_interface {
     subnet_id           = yandex_vpc_subnet.private_subnet_elk.id
     nat                 = false
-    # security_group_ids  = [yandex_vpc_security_group.elastic.id]
+    security_group_ids  = [yandex_vpc_security_group.elastic.id]
   }
     
     metadata = {
@@ -30,8 +30,6 @@ resource "yandex_compute_instance" "elasticsearchvm" {
       VM_USER = var.vm_user
       SSH_KEY = var.ssh_key
     })
-
-    # ssh-keys  = "algininss:${file(var.ssh_key)}"
   }
   
     scheduling_policy {

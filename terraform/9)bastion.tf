@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "bastionvm" {
     network_interface {
     subnet_id           = yandex_vpc_subnet.public_subnet.id
     nat                 = true
-    # security_group_ids  = [yandex_vpc_security_group.bastion.id]
+    security_group_ids  = [yandex_vpc_security_group.bastion.id]
   }
     
     metadata = {
@@ -30,8 +30,6 @@ resource "yandex_compute_instance" "bastionvm" {
       VM_USER = var.vm_user
       SSH_KEY = var.ssh_key
     })
-
-    # ssh-keys  = "algininss:${file(var.ssh_key)}"
   }
   
     scheduling_policy {

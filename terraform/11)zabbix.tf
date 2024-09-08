@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "zabbixvm" {
     network_interface {
     subnet_id          = yandex_vpc_subnet.public_subnet_zabbix_kibana.id
     nat                = true  
-    # security_group_ids = [yandex_vpc_security_group.zabbix.id]
+    security_group_ids = [yandex_vpc_security_group.zabbix.id]
   }
     
     metadata = {
@@ -30,9 +30,6 @@ resource "yandex_compute_instance" "zabbixvm" {
       VM_USER = var.vm_user
       SSH_KEY = var.ssh_key
     })
-
-    # ssh-keys  = "algininss:${file(var.ssh_key)}"
-    # user-data = file("/home/algininss/diplom/terraform/nginx.yaml")
   }
   
     scheduling_policy {

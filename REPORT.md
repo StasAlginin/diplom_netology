@@ -8,13 +8,13 @@
 
 Пароль: QAZxsw1234
 
-[Ссылка](http://89.169.146.16:8080/zabbix.php?action=dashboard.view&dashboardid=347&from=now-30m&to=now)
+[Ссылка](http://51.250.9.253:8080/zabbix.php?action=dashboard.view&dashboardid=347&from=now-30m&to=now)
 
 ![1](https://github.com/StasAlginin/diplom_netology/blob/main/images/zabbix.jpeg)
 
 ## Доступ к ресурсу Kibana
 
-[Ссылка](http://89.169.139.11:5601/goto/81451570-6e1d-11ef-b026-0d5e95dbd1fd)
+[Ссылка](http://51.250.66.124:5601/goto/f6d0b0b0-6e22-11ef-b320-b7eb34742d95)
 
 ![2](https://github.com/StasAlginin/diplom_netology/blob/main/images/kibana.jpeg)
 
