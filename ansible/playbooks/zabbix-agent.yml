@@ -1,0 +1,6 @@
+---
+- name: Установка zabbix_agent на все хосты, кроме server_zabbix и server_bastion
+  hosts: all:!server_zabbix:!server_bastion
+  become: yes
+  roles:
+    - zabbix-agent

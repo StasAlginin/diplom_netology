@@ -1,0 +1,23 @@
+#cloud-config
+datasource:
+  Ec2:
+    strict_id: false
+ssh_pwauth: no
+users:
+- name: "${VM_USER}"
+  sudo: 'ALL=(ALL) NOPASSWD:ALL'
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - "${SSH_KEY}"
+write_files:
+  - path: "/usr/local/etc/startup.sh"
+    permissions: "755"
+    content: |
+      #!/bin/bash
+
+      apt-get update
+      apt-get install -y nginx
+      service nginx start   
+    defer: true
+runcmd:
+  - ["/usr/local/etc/startup.sh"]

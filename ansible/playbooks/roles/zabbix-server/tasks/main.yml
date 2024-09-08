@@ -1,0 +1,48 @@
+---
+- name: Добавление zabbix репозитория
+  get_url:
+    url: https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-2+ubuntu24.04_all.deb
+    dest: /tmp/zabbix-release.deb
+
+- name: Уставновка zabbix репозитория
+  apt:
+    deb: /tmp/zabbix-release.deb
+    state: present
+
+- name: Обновление apt cache
+  apt:
+    update_cache: yes
+
+- name: Установка компонентов zabbix-server
+  apt:
+    name:
+      - mysql-server
+      - zabbix-server-mysql
+      - zabbix-frontend-php
+      - zabbix-sql-scripts
+      - zabbix-nginx-conf
+      - zabbix-agent
+    state: present
+
+- name: Копирование MySQL скрипта
+  copy:
+    src: files/mysql_install.sh
+    dest: /tmp/mysql_install.sh
+    mode: '0755'
+
+- name: Конфигурирование Mysql DB
+  shell: "/tmp/mysql_install.sh"
+
+- name: Конфигурирование zabbix-server
+  template:
+    src: zabbix_server.conf.j2
+    dest: /etc/zabbix/zabbix_server.conf
+  notify: 
+    - Перезапуск zabbix-server
+
+- name: Конфигурирование Frontend nginx
+  template:
+    src: nginx.conf.j2
+    dest: /etc/zabbix/nginx.conf
+  notify: 
+    - Перезапуск Nginx

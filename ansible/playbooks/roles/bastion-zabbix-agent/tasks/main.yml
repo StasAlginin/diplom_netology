@@ -1,0 +1,17 @@
+---
+- name: Копирование локальных файлов zabbix-agent
+  synchronize:
+    src: files/zabbix-packages
+    dest: /tmp
+    mode: push
+
+- name: Локальная установка zabbix-agent
+  shell: dpkg -i /tmp/zabbix-packages/*.deb
+
+- name: Настройка конфигурации zabbix-agent
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: '^Server='
+    line: 'Server=zabbix.ru-central1.internal'
+  notify:
+    - Перезапуск zabbix-agent

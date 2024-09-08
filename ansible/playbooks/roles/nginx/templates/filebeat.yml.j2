@@ -1,0 +1,27 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+      - /var/log/nginx/*access.log
+  fields:
+    type: nginx_access
+  fields_under_root: true
+  scan_frequency: 2m
+
+- type: log
+  enabled: true
+  paths:
+      - /var/log/nginx/*error.log
+  fields:
+    type: nginx_error
+  fields_under_root: true
+  scan_frequency: 30s
+
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch.ru-central1.internal:9200"]
+
+setup.kibana.host: "http://kibana.ru-central1.internal:5601"
+filebeat.config.modules:
+  enabled: true
+  path: /etc/filebeat/modules.d/*.yml

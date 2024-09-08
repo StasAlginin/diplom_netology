@@ -1,0 +1,6 @@
+---
+- import_playbook: zabbix-server.yml
+- import_playbook: bastion-zabbix-agent.yml
+- import_playbook: zabbix-agent.yml
+- import_playbook: nginx.yml
+- import_playbook: elk.yml

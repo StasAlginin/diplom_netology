@@ -1,0 +1,12 @@
+---
+- name: Перезапуск nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
+
+- name: Перезапуск filebeat
+  service:
+    name: filebeat
+    state: restarted
+    enabled: yes

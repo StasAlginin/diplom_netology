@@ -1,0 +1,6 @@
+---
+- name: Перезапуск kibana
+  service:
+    name: kibana
+    state: restarted
+    enabled: yes

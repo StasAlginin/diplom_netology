@@ -1,0 +1,29 @@
+- name: Копирование файла index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Копирование файла styles.css
+  template:
+    src: styles.css.j2
+    dest: /var/www/html/styles.css
+  notify: 
+    - Перезапуск nginx
+
+- name: Добавление репозитория Elastic
+  apt_repository:
+    repo: 'deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/7/ stable main'
+    state: present
+
+- name: Установка filebeat
+  apt:
+    name: filebeat
+    state: present
+
+- name: Копирование конфигурационных файлов filebeat
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    mode: '0644'
+  notify: 
+    - Перезапуск filebeat

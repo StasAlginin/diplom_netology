@@ -1,0 +1,6 @@
+---
+- name: Установка Zabbix Agent на server_bastion
+  hosts: server_bastion
+  become: yes
+  roles:
+    - bastion-zabbix-agent
