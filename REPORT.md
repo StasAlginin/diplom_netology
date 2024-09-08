@@ -3,6 +3,7 @@
 1. Доступ к ресурсу Zabbix
 
 Логин: user
+
 Пароль: QAZxsw1234
 
 Ссылка: [http://89.169.146.16:8080/zabbix.php?action=dashboard.view&dashboardid=347&from=now-30m&to=now]
